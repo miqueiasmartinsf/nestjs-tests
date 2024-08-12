@@ -13,19 +13,26 @@ export class UserRepository implements IUserRepository {
         throw new Error('Method not implemented.');
     }
 
-    async findByEmail(email: string): Promise<void> {
-        const userExists = UserSchema.findAll({
+    async findByEmail(email: string): Promise<User | void> {
+        const userExists = await UserSchema.findOne({
             where: { email },
         });
+
+        if (userExists) {
+            return new User({
+                name: userExists.name,
+                id: userExists.id,
+                email: userExists.email,
+                password: userExists.password,
+            });
+        }
+
+        return;
     }
 
-    async create(userData: RegisterDTO): Promise<User> {
-        // const user = new User({
-        //     email: userData.email,
-        //     password: userData.password,
-        // });
-
+    async create(userData: User): Promise<User> {
         const user = await UserSchema.create({
+            id: userData.id,
             name: userData.name,
             email: userData.email,
             password: userData.password,
