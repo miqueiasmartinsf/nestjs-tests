@@ -14,20 +14,24 @@ export class UserRepository implements IUserRepository {
     }
 
     async findByEmail(email: string): Promise<void> {
-        const userExists = UserSchema.findOne({
+        const userExists = UserSchema.findAll({
             where: { email },
         });
     }
 
     async create(userData: RegisterDTO): Promise<User> {
-        const user = new User({
+        // const user = new User({
+        //     email: userData.email,
+        //     password: userData.password,
+        // });
+
+        const user = await UserSchema.create({
+            name: userData.name,
             email: userData.email,
             password: userData.password,
         });
 
-        await UserSchema.create({
-            user,
-        });
+        await user.save();
 
         return user;
     }
@@ -35,7 +39,7 @@ export class UserRepository implements IUserRepository {
     update(): Promise<void> {
         throw new Error('Method not implemented.');
     }
-    delete(): Promise<void> {
-        throw new Error('Method not implemented.');
+    async delete(): Promise<void> {
+        await UserSchema.destroy({ where: {}, truncate: true });
     }
 }

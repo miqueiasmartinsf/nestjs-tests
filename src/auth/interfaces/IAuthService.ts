@@ -5,4 +5,6 @@ export interface IAuthService {
     login(userData: LoginDTO): Promise<string>;
 
     register(userData: RegisterDTO): Promise<void>;
+
+    deleteAll(): Promise<void>;
 }

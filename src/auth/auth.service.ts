@@ -14,7 +14,12 @@ export class AuthService implements IAuthService {
     async login(userData: LoginDTO): Promise<string> {
         return 'user created with sucess';
     }
+
     async register(userData: RegisterDTO): Promise<void> {
         await this.userRepository.create(userData);
+    }
+
+    async deleteAll(): Promise<void> {
+        await this.userRepository.delete();
     }
 }

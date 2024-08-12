@@ -14,10 +14,13 @@ content-type: application/json
 
 {
     "name": "Jurandir",
-    "email": "jurandir@gmail.com",
+    "email": "jurand3232ir@gmail.com",
     "password" : "asdaada"
 }
 
 ###
 
+DELETE http://localhost:3000/auth HTTP/1.1 
 
+
+###

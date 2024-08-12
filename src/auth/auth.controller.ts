@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Inject, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Inject, Post } from '@nestjs/common';
 import { LoginDTO } from './dtos/login.dto';
 import { RegisterDTO } from './dtos/register.dto';
 import { IAuthService } from './interfaces/IAuthService';
@@ -22,5 +22,10 @@ export class AuthController {
         const response = await this.authService.register(userData);
 
         return response;
+    }
+
+    @Delete()
+    async deleteAll() {
+        await this.authService.deleteAll();
     }
 }

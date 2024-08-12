@@ -7,6 +7,7 @@ import {
     ValidatorConstraintInterface,
 } from 'class-validator';
 import { IUserRepository } from 'src/user/interfaces/IUserRepository';
+import { RegisterDTO } from '../dtos/register.dto';
 
 @Injectable()
 @ValidatorConstraint({
@@ -19,15 +20,14 @@ export class UniqueEmailValidator implements ValidatorConstraintInterface {
     ) {}
 
     async validate(
-        value: any,
+        value: RegisterDTO,
         validationArguments?: ValidationArguments,
     ): Promise<boolean> {
-        const userExits = await this.userRepository.findByEmail(value);
+        const userExits = await this.userRepository.findByEmail(value.email);
 
-        return !userExits;
-    }
-    defaultMessage?(validationArguments?: ValidationArguments): string {
-        throw new Error('Method not implemented.');
+        console.log(123132);
+
+        return false;
     }
 }
 

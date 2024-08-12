@@ -8,7 +8,7 @@ export class UserSchema extends Model {
     @Column
     name: string;
 
-    @Column({ unique: true })
+    @Column({ unique: true, allowNull: false })
     email: string;
 
     @Column
