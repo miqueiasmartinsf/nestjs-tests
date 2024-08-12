@@ -1,5 +1,5 @@
 import { Sequelize } from 'sequelize-typescript';
-import { User } from 'src/database/schemas/user.entity';
+import { UserSchema } from 'src/database/schemas/user.entity';
 
 export const databaseProviders = [
     {
@@ -12,7 +12,7 @@ export const databaseProviders = [
                 username: 'root',
                 database: 'ecommerce-db',
             });
-            sequelize.addModels([User]);
+            sequelize.addModels([UserSchema]);
             await sequelize.sync();
             return sequelize;
         },

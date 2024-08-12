@@ -1,13 +1,13 @@
 import { randomUUID } from 'crypto';
 
 interface IUserData {
-    id: string;
+    id?: string;
     email: string;
     password: string;
 }
 
 export class User {
-    id: string;
+    id?: string;
     email: string;
     password: string;
 

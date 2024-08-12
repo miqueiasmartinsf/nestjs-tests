@@ -3,7 +3,6 @@ import { IAuthService } from './interfaces/IAuthService';
 import { LoginDTO } from './dtos/login.dto';
 import { RegisterDTO } from './dtos/register.dto';
 import { IUserRepository } from 'src/user/interfaces/IUserRepository';
-import { UserRepository } from 'src/user/user.repository';
 
 @Injectable()
 export class AuthService implements IAuthService {
@@ -15,5 +14,7 @@ export class AuthService implements IAuthService {
     async login(userData: LoginDTO): Promise<string> {
         return 'user created with sucess';
     }
-    async register(userData: RegisterDTO): Promise<void> {}
+    async register(userData: RegisterDTO): Promise<void> {
+        await this.userRepository.create(userData);
+    }
 }

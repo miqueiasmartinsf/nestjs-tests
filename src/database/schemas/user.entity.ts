@@ -1,16 +1,19 @@
 import { Column, Table, Model } from 'sequelize-typescript';
 
-@Table({ timestamps: true })
-export class User extends Model {
+@Table({ timestamps: true, tableName: 'users' })
+export class UserSchema extends Model {
+    @Column({ primaryKey: true })
+    id: string;
+
     @Column
     name: string;
 
-    @Column
+    @Column({ unique: true })
     email: string;
 
     @Column
     password: string;
 
-    @Column
+    @Column({ unique: true })
     refreshToken: string;
 }
