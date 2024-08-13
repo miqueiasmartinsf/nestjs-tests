@@ -36,6 +36,7 @@ export class UserRepository implements IUserRepository {
             name: userData.name,
             email: userData.email,
             password: userData.password,
+            refreshToken: userData.refreshToken,
         });
 
         await user.save();

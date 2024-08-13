@@ -1,8 +1,9 @@
 import { RegisterDTO } from 'src/auth/dtos/register.dto';
+import { UserSchema } from 'src/database/schemas/user.entity';
 import { User } from 'src/models/User';
 
 export interface IUserRepository {
-    findAll(): Promise<void>;
+    findAll(): Promise<UserSchema[]>;
 
     finById(): Promise<void>;
 

@@ -12,11 +12,6 @@ export class AuthController {
     @Post('/login')
     async login(@Body() userData: LoginDTO) {}
 
-    @Get('/asd')
-    async asd() {
-        return '123';
-    }
-
     @Post('/register')
     async register(@Body() userData: RegisterDTO) {
         const response = await this.authService.register(userData);

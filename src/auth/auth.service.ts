@@ -5,12 +5,14 @@ import { RegisterDTO } from './dtos/register.dto';
 import { IUserRepository } from 'src/user/interfaces/IUserRepository';
 import { User } from 'src/models/User';
 import { sign } from 'jsonwebtoken';
+import { ConfigService } from '@nestjs/config';
 
 @Injectable()
 export class AuthService implements IAuthService {
     constructor(
         @Inject('IUserRepository')
         private readonly userRepository: IUserRepository,
+        private readonly configService: ConfigService,
     ) {}
 
     async login(userData: LoginDTO): Promise<string> {
@@ -24,7 +26,9 @@ export class AuthService implements IAuthService {
             password: userData.password,
         });
 
-        user.refreshToken = sign(user.id, `${process.env.JSONWEBTOKEN_SECRET}`);
+        const jwtSecret = this.configService.get<string>('JWT_SECRET');
+
+        user.refreshToken = sign(user.id, jwtSecret);
 
         await this.userRepository.create(user);
     }
