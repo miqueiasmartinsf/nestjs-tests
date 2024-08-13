@@ -10,8 +10,7 @@ import { UserService } from './user.service';
     providers: [
         { useClass: UserRepository, provide: 'IUserRepository' },
         { useClass: UserService, provide: 'IUserService' },
-        ,
     ],
-    exports: ['IUserRepository', 'IUserService'],
+    exports: ['IUserRepository'],
 })
 export class UserModule {}

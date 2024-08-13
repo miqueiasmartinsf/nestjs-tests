@@ -16,8 +16,6 @@ export class AuthController {
     async register(@Body() userData: RegisterDTO) {
         const response = await this.authService.register(userData);
 
-        console.log(213);
-        console.log(userData);
         return response;
     }
 

@@ -6,7 +6,7 @@ import { User } from 'src/models/User';
 
 @Injectable()
 export class UserRepository implements IUserRepository {
-    findAll(): Promise<void> {
+    findAll(): Promise<UserSchema[]> {
         throw new Error('Method not implemented.');
     }
     finById(): Promise<void> {
